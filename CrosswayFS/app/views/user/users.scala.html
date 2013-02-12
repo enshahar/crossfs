@@ -1,0 +1,7 @@
+@(users: List[models.User])
+
+@main("User Lists") {
+	@users.map { user =>
+		@user.id @user.loginname @user.name @user.mobile<br/>
+	}
+}
