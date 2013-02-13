@@ -1,0 +1,9 @@
+@import models._
+
+@(users: List[User])
+
+@main("User Lists") {
+	@users.map { user =>
+		@user.id @user.loginname @user.name @user.mobile<br/>
+	}
+}
