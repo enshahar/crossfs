@@ -3,16 +3,26 @@ package controllers
 import play.api._
 import play.api.mvc._
 
+import play.api.Play.current
+
+import play.api.data._
+import play.api.db.DB
+import scala.slick.driver.H2Driver.simple._
+
+// let's user thread local session
+import Database.threadLocalSession
+
 object Application extends Controller {
 
-  // Users to test controllser & view
-  val test_user_list = List( models.User(1, "id1", "name1", "0100000001"), 
-         models.User(2, "id2", "name2", "0100000002"), 
-         models.User(3, "id3", "name3", "0100000003") )
+  lazy val database = Database.forDataSource(DB.getDataSource())
 
   // User related methods
   def users = Action {
-    Ok(views.html.user.users(test_user_list))
+    Ok(views.html.user.users(
+      database withSession {
+        models.Users.list
+      }
+    ))
   }
 
   def user(id: Long) = TODO
