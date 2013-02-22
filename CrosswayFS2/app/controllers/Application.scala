@@ -10,6 +10,7 @@ import Database.threadLocalSession
 
 import play.api.Play.current
 import play.api._
+import play.api.data._
 import play.api.mvc._
 
 import models._
@@ -28,7 +29,9 @@ object Application extends Controller {
   def user(id: Long) = TODO
   
   // 사용자 폼을 표시한다.
-  def newUser = TODO
+  def newUser = Action {
+    Ok(views.html.user.createForm(Users.userForm))
+  }
 
   def saveUser = TODO
 

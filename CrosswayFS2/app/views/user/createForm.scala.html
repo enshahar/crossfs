@@ -1,0 +1,22 @@
+@(userForm: Form[models.User] )
+
+@import helper._
+
+    <h1>사용자 추가</h1>
+    
+    @form(routes.Application.saveUser()) {
+        
+        <fieldset>
+        
+            @inputText(userForm("loginname"), '_label -> "로그인 이름")
+            @inputText(userForm("name"), '_label -> "이름")
+            @inputText(userForm("mobile"), '_label -> "휴대전화")
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" value="사용자 추가" class="btn primary"> or 
+            <a href="@routes.Application.users()" class="btn">취소</a> 
+        </div>
+        
+    }
