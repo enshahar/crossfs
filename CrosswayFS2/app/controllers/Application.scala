@@ -27,7 +27,10 @@ object Application extends Controller {
 
   def user(id: Long) = TODO
   
+  // 사용자 폼을 표시한다.
   def newUser = TODO
+
+  def saveUser = TODO
 
   def deleteUser(id: Long) = TODO
 

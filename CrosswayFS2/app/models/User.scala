@@ -1,6 +1,8 @@
 package models
 
 import scala.slick.driver.H2Driver.simple._
+import play.api.data._
+import play.api.data.Forms._
 
 // user class
 case class User(id: Option[Long] = None, loginname:String, name:String, mobile:String)
@@ -28,4 +30,13 @@ object Users extends Table[User]("users") {
            User(2, "id2", "name2", "0100000002"),
            User(3, "id3", "name3", "0100000003") )
   */
+  val userForm = Form(
+    mapping (
+      "id" -> optional(longNumber),
+      "loginname" -> nonEmptyText,
+      "name" -> nonEmptyText,
+      "mobile" -> text
+    )(User.apply)(User.unapply)
+  )
+
 }
