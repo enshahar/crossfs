@@ -1,6 +1,13 @@
 package models
 
+import play.api.db.DB
+import play.api.GlobalSettings
+import play.api.Play.current
+
+// Use H2Driver to connect to an H2 database
 import scala.slick.driver.H2Driver.simple._
+import Database.threadLocalSession
+
 //import play.api.data._
 //import play.api.data.Forms._
 
@@ -38,5 +45,22 @@ object Users extends Table[User]("users") {
       "mobile" -> play.api.data.Forms.text
     )(User.apply)(User.unapply)
   )
+
+  /**
+   * Insert a new user.
+   *
+   * @param user The user values.
+   */
+  def insertUser(user: User) = {
+    /*scala.slick.session.*/Database.forDataSource(DB.getDataSource()) withSession {
+        Users.insert(user)
+    }
+  }
+
+  def listUser():List[User] = {
+    /*scala.slick.session.*/Database.forDataSource(DB.getDataSource()) withSession {
+        Query(Users).list
+    }
+  }
 
 }

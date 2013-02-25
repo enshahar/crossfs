@@ -8,6 +8,14 @@
 	"buffers":
 	[
 		{
+			"file": "CrosswayFS2/app/views/user/users.scala.html2.html",
+			"settings":
+			{
+				"buffer_size": 828,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "CrosswayFS2/conf/routes",
 			"settings":
 			{
@@ -16,86 +24,19 @@
 			}
 		},
 		{
-			"file": "/C/app/play-2.1.0/samples/scala/computer-database/app/controllers/Application.scala",
+			"file": "CrosswayFS2/app/controllers/Application.scala",
 			"settings":
 			{
-				"buffer_size": 2775,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/templates/Templates.scala",
-			"settings":
-			{
-				"buffer_size": 4553,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/app/Play-2.1.0/framework/src/templates/src/main/scala/play/api/templates/ScalaTemplate.scala",
-			"settings":
-			{
-				"buffer_size": 5952,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/Helpers.scala",
-			"settings":
-			{
-				"buffer_size": 2581,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/package.scala",
-			"settings":
-			{
-				"buffer_size": 692,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "@**\n * Generate an HTML input text.\n *\n * Example:\n * {{{\n * @inputText(field = myForm(\"name\"), args = 'size -> 10, 'placeholder -> \"Your name\")\n * }}}\n *\n * @param field The form field.\n * @param args Set of extra attributes.\n * @param handler The field constructor.\n *@\n@(field: play.api.data.Field, args: (Symbol,Any)*)(implicit handler: FieldConstructor, lang: play.api.i18n.Lang)\n\n@inputType = @{ args.toMap.get('type).map(_.toString).getOrElse(\"text\") }\n\n@d(field, args.filter(_._1 != 'type):_*) { (id, name, value, htmlArgs) =>\n    <input type=\"@inputType\" id=\"@id\" name=\"@name\" value=\"@value\" @toHtmlArgs(htmlArgs)>\n}\n",
-			"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/inputText.scala.html",
-			"file_size": 630,
-			"file_write_time": 130044990830000000,
-			"settings":
-			{
-				"buffer_size": 626,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/input.scala.html",
-			"settings":
-			{
-				"buffer_size": 511,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/defaultFieldConstructor.scala.html",
-			"settings":
-			{
-				"buffer_size": 819,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/data/Form.scala",
-			"settings":
-			{
-				"buffer_size": 27765,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "CrosswayFS2/app/views/user/createForm.scala.html",
-			"settings":
-			{
-				"buffer_size": 576,
+				"buffer_size": 1021,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/app/play-2.1.0/samples/scala/computer-database/app/views/list.scala.html",
+			"settings":
+			{
+				"buffer_size": 3933,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -132,12 +73,33 @@
 	"file_history":
 	[
 		"/C/app/play-2.1.0/samples/scala/computer-database/app/controllers/Application.scala",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/models/Models.scala",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/controllers/Application.scala",
-		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/createForm.scala.html",
-		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/createForm.scala.html",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/models/User.scala",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/Global.scala",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/public/stylesheets/bootstrap.min.css",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/public/stylesheets/main.css",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/conf/application.conf",
+		"/C/app/play-2.1.0/samples/scala/computer-database/public/stylesheets/main.css",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/main.scala.html",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/main.scala.html",
+		"/C/app/play-2.1.0/samples/scala/computer-database/conf/routes",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/conf/routes",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/createForm.scala.html",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/list.scala.html",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/users.scala.html",
+		"/C/app/play-2.1.0/samples/scala/computer-database/conf/application.conf",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/editForm.scala.html",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/twitterBootstrapInput.scala.html",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/createForm.scala.html",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/templates/Templates.scala",
+		"/C/app/Play-2.1.0/framework/src/templates/src/main/scala/play/api/templates/ScalaTemplate.scala",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/Helpers.scala",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/package.scala",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/inputText.scala.html",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/input.scala.html",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/defaultFieldConstructor.scala.html",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/data/Form.scala",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS.sublime-project",
 		"/app/play-2.1.0/samples/scala/computer-database/app/controllers/Application.scala",
 		"/app/play-2.1.0/framework/src/play/src/main/scala/play/api/data/Forms.scala",
@@ -150,7 +112,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 90.0,
+		"height": 0.0,
 		"where_history":
 		[
 		]
@@ -160,6 +122,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Flash",
+			"flashing",
 			"input",
 			"apply",
 			"optional"
@@ -180,11 +144,37 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "CrosswayFS2/app/views/user/users.scala.html2.html",
+					"settings":
+					{
+						"buffer_size": 828,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								560,
+								560
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
 					"file": "CrosswayFS2/conf/routes",
 					"settings":
 					{
@@ -195,8 +185,8 @@
 						"selection":
 						[
 							[
-								690,
-								690
+								577,
+								621
 							]
 						],
 						"settings":
@@ -210,47 +200,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "/C/app/play-2.1.0/samples/scala/computer-database/app/controllers/Application.scala",
-					"settings":
-					{
-						"buffer_size": 2775,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 2,
-					"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/templates/Templates.scala",
+					"file": "CrosswayFS2/app/controllers/Application.scala",
 					"settings":
 					{
-						"buffer_size": 4553,
+						"buffer_size": 1021,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								591,
+								591
 							]
 						],
 						"settings":
@@ -267,208 +229,18 @@
 				},
 				{
 					"buffer": 3,
-					"file": "/C/app/Play-2.1.0/framework/src/templates/src/main/scala/play/api/templates/ScalaTemplate.scala",
+					"file": "/C/app/play-2.1.0/samples/scala/computer-database/app/views/list.scala.html",
 					"settings":
 					{
-						"buffer_size": 5952,
+						"buffer_size": 3933,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1344.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/Helpers.scala",
-					"settings":
-					{
-						"buffer_size": 2581,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1605,
-								1605
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 192.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/package.scala",
-					"settings":
-					{
-						"buffer_size": 692,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								127,
-								127
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/inputText.scala.html",
-					"settings":
-					{
-						"buffer_size": 626,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								385,
-								385
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/input.scala.html",
-					"settings":
-					{
-						"buffer_size": 511,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								308,
-								321
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/defaultFieldConstructor.scala.html",
-					"settings":
-					{
-						"buffer_size": 819,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								382,
-								382
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/data/Form.scala",
-					"settings":
-					{
-						"buffer_size": 27765,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5006,
-								5006
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Scala/Scala.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1954.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "CrosswayFS2/app/views/user/createForm.scala.html",
-					"settings":
-					{
-						"buffer_size": 576,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								576,
-								576
+								518,
+								879
 							]
 						],
 						"settings":

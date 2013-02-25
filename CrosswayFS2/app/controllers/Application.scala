@@ -1,14 +1,5 @@
 package controllers
 
-import play.api.db.DB
-import play.api.GlobalSettings
-
-// Use H2Driver to connect to an H2 database
-import scala.slick.driver.H2Driver.simple._
-
-import Database.threadLocalSession
-
-import play.api.Play.current
 import play.api._
 import play.api.data._
 import play.api.mvc._
@@ -16,14 +7,14 @@ import play.api.mvc._
 import models._
 
 object Application extends Controller {
+  /**
+   * This result directly redirect to the application home.
+   */
+  val UsersHome = Redirect(routes.Application.users)
 
   // User related methods
-  def users = Action {
-  	Database.forDataSource(DB.getDataSource()) withSession {
-  		{
-	  		Ok(views.html.user.users(Query(Users).list))
-	  	}
-  	}
+  def users = Action { implicit request =>
+	  		Ok(views.html.user.users(Users.listUser))
 	}
 
   def user(id: Long) = TODO
@@ -33,7 +24,15 @@ object Application extends Controller {
     Ok(views.html.user.createForm(Users.userForm))
   }
 
-  def saveUser = TODO
+  def saveUser = Action { implicit request =>
+    Users.userForm.bindFromRequest.fold(
+      formWithErrors => BadRequest(views.html.user.createForm(formWithErrors)),
+      user => {
+        Users.insertUser(user)
+        UsersHome.flashing("success" -> "User %s(%s) has been created".format(user.loginname, user.name))
+      }
+    )
+  }
 
   def deleteUser(id: Long) = TODO
 

@@ -18,7 +18,7 @@
     }
 
 	@users.map { user => 
-					<a href="@controllers.Application.users(getUserId(user.id))">user.id</a> @user.loginname @user.name @user.mobile <a href="@controllers.Application.modifyUser(getUserId(user.id))" class="btn">수정</a> <a href="@controllers.Application.deleteUser(getUserId(user.id))" class="btn">삭제</a> <br/>
+					@*<a href="@controllers.Application.users(getUserId(user.id))">user.id</a> @user.loginname @user.name @user.mobile <a href="@controllers.Application.modifyUser(getUserId(user.id))" class="btn">수정</a> <a href="@controllers.Application.deleteUser(getUserId(user.id))" class="btn">삭제</a> <br/>
 	}
 }
 
