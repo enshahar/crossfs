@@ -1,0 +1,42 @@
+@(userForm: Form[models.User], editable:Boolean = true )
+
+@import helper._
+
+@**********************************
+* Helper getting user ID          *
+***********************************@
+@getUserId(userid: Option[models.User]) = @{
+    userid match { 
+        case Some(x) => x.id match {
+            case Some(v) => v
+            case None => -1
+        }
+        case None => -1 
+    }
+}
+@main(if(editable) "사용자 수정" else "사용자 보기") {
+    @form(routes.Application.updateUser(getUserId(userForm.value))) {
+        
+        <fieldset>            
+            @inputHidden(userForm("id"))
+            @inputText(userForm("loginname"), '_label -> "로그인 이름", '_readonly -> "")
+            @inputText(userForm("name"), '_label -> "이름", '_readonly -> "")
+@if(editable) {
+            @inputText(userForm("mobile"), '_label -> "휴대전화", '_readonly -> "")
+} else {
+            @inputText(userForm("mobile"), '_label -> "휴대전화")    
+}
+
+        </fieldset>
+        
+        <div class="actions">
+@if(editable) {            
+            <input type="submit" value="사용자 변경" class="btn primary"> or 
+} else {
+            <a href="@routes.Application.deleteUser(getUserId(userForm.value))" class="btn">사용자 삭제</a> or    
+}            
+            <a href="@routes.Application.users()" class="btn">취소</a> 
+        </div>
+        
+    }
+}

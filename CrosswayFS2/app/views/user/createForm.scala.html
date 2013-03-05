@@ -2,12 +2,11 @@
 
 @import helper._
 
-    <h1>사용자 추가</h1>
-    
+@main("사용자 추가") {
+
     @form(routes.Application.saveUser()) {
         
         <fieldset>
-        
             @inputText(userForm("loginname"), '_label -> "로그인 이름")
             @inputText(userForm("name"), '_label -> "이름")
             @inputText(userForm("mobile"), '_label -> "휴대전화")
@@ -20,3 +19,4 @@
         </div>
         
     }
+}

@@ -1,15 +1,15 @@
 @(users: List[models.User])(implicit flash: play.api.mvc.Flash)
 
 @**********************************
-* Helper generating table headers *
+* Helper getting user ID          *
 ***********************************@
-@getUserId(userid: Option[Long]) = {
- 	userid
+@getUserId(userid: Option[Long]) = @{
+ 	userid match { 
+ 		case Some(x) => x 
+ 		case None => -1 
+ 	}
 }
-
-    <h1>사용자 목록</h1>
-
-@main("User Lists") {
+@main("사용자 목록") {
     
     @flash.get("success").map { message =>
         <div class="alert-message warning">
@@ -17,9 +17,17 @@
         </div>
     }
 
-	@users.map { user => 
-					<a href="@controllers.Application.users(getUserId(user.id))">user.id</a> @user.loginname @user.name @user.mobile <a href="@controllers.Application.modifyUser(getUserId(user.id))" class="btn">수정</a> <a href="@controllers.Application.deleteUser(getUserId(user.id))" class="btn">삭제</a> <br/>
-	}
-}
+    @flash.get("error").map { message =>
+        <div class="alert-message error">
+            <strong>ERROR!</strong> @message
+        </div>
+    }
 
+    <table class="userTable" id="userTable" cellpadding="0" cellspacing="0" border="" width="80%">
+    <tr><th>ID</th><th>login name</th><th>name</th><th>mobile</th><th></th><th></th></tr>
+	@users.map { user => 
+					<tr><td><a href="@routes.Application.user(getUserId(user.id))">@user.id</a></td><td>@user.loginname</td><td>@user.name</td><td>@user.mobile</td><td><a href="@routes.Application.modifyUser(getUserId(user.id))" class="btn">수정</a></td><td><a href="@routes.Application.deleteUser(getUserId(user.id))" class="btn">삭제</a></td></tr>
+	}
+	</table>
+}
 <center><a href="@routes.Application.newUser()" class="btn">사용자 추가</a></center>

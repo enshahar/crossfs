@@ -7,6 +7,7 @@ import play.api.Play.current
 // Use H2Driver to connect to an H2 database
 import scala.slick.driver.H2Driver.simple._
 import Database.threadLocalSession
+import scala.slick.ast.Dump
 
 //import play.api.data._
 //import play.api.data.Forms._
@@ -57,9 +58,35 @@ object Users extends Table[User]("users") {
     }
   }
 
+  def deleteUser(id: Long) = {
+    /*scala.slick.session.*/Database.forDataSource(DB.getDataSource()) withSession {
+        Query(Users).where(_.id === id).delete
+    }
+  }
+
+  def updateUser(user:User) = {
+    /*scala.slick.session.*/Database.forDataSource(DB.getDataSource()) withSession {
+        Users.where(_.id === user.id).map(_.mobile).update(user.mobile)
+    }    
+  }
+
   def listUser():List[User] = {
     /*scala.slick.session.*/Database.forDataSource(DB.getDataSource()) withSession {
         Query(Users).list
+    }
+  }
+
+  def getUser(id:Long):Option[User] = {
+    /*scala.slick.session.*/Database.forDataSource(DB.getDataSource()) withSession {
+      //val v = (for (u <- Users if u.id === id) yield (u)).list
+      val v = Query(Users).where(_.id === id)
+      val vv = v.list
+      //Dump(v, "v: ")
+      //println(v.selectStatement)
+      if(vv.length == 0) 
+        None
+      else
+        Some(vv.head)
     }
   }
 

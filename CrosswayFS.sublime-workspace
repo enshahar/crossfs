@@ -8,34 +8,111 @@
 	"buffers":
 	[
 		{
-			"file": "CrosswayFS2/app/views/user/users.scala.html2.html",
+			"contents": "FilterMonadic\n=> TraversableLike ::\n	  def map[B, That](f: A => B)(implicit bf: CanBuildFrom[Repr, B, That]): That = {\n	    def builder = { // extracted to keep method size under 35 bytes, so that it can be JIT-inlined\n	      val b = bf(repr)\n	      b.sizeHint(this)\n	      b\n	    }\n	    val b = builder\n	    for (x <- this) b += f(x)\n	    b.result\n	  }\n\n	  def flatMap[B, That](f: A => GenTraversableOnce[B])(implicit bf: CanBuildFrom[Repr, B, That]): That = {\n	    def builder = bf(repr) // extracted to keep method size under 35 bytes, so that it can be JIT-inlined\n	    val b = builder\n	    for (x <- this) b ++= f(x).seq\n	    b.result\n	  }\n   => Immutable.Traversable\n\n   => Iterable\n",
 			"settings":
 			{
-				"buffer_size": 828,
+				"buffer_size": 689,
+				"line_ending": "Windows",
+				"name": "FilterMonadic"
+			}
+		},
+		{
+			"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/Iterable.scala",
+			"settings":
+			{
+				"buffer_size": 1971,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/gitdev/scala_src/scala/src/library/scala/collection/Iterator.scala",
+			"settings":
+			{
+				"buffer_size": 44026,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "CrosswayFS2/conf/routes",
+			"file": "/C/gitdev/scala_src/scala/src/library/scala/collection/TraversableOnce.scala",
 			"settings":
 			{
-				"buffer_size": 690,
+				"buffer_size": 15186,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "CrosswayFS2/app/controllers/Application.scala",
+			"contents": "sealed abstract class MyList[+A] {\n  def head : A\n  def tail : MyList[A]\n  def isEmpty: Boolean\n  def map[That](f:A=>That):MyList[That]\n  //def map[B,That](f: A => B)(implicit bf: CanBuildFrom[Repr, B, That]): That\n  //def flatMap[B, That](f: A => scala.collection.GenTraversableOnce[B])(implicit bf: CanBuildFrom[Repr, B, That]): That\n  //def foreach[U](f: A => U): Unit\n  //def withFilter(p: A => Boolean): FilterMonadic[A, Repr]\n}\n\ncase object Nil extends MyList[Nothing] {\n  override def isEmpty = true\n  override def head: Nothing =\n    throw new NoSuchElementException(\"head of empty list\")\n  override def tail: MyList[Nothing] =\n    throw new UnsupportedOperationException(\"tail of empty list\")\n  override def map[That](f:Nothing=>That) = Nil\n}\n\nfinal case class Cons[B](val head:B, val tail: MyList[B]) extends MyList[B] {\n  override def isEmpty: Boolean = false\n  override def map[That](f:B=>That):MyList[That] = Cons(f(head), tail.map(f))\n}\n\ntrait Result[+T]\n{\n  def isError: Boolean\n  def map[That](f:T=>That):Result[That]\n}\ncase object Error extends Result[Nothing]\n{\n	override def isError = true\n	override def map[That](f:Nothing=>That) = Error\n}\n\ncase class Normal[T](value:T) extends Result[T]\n{\n	override def isError = false\n	override def map[That](f:T=>That):Result[That] = Normal(f(value))\n}\n",
+			"file": "/C/Users/s2852886/Google Drive/mylist.scala",
+			"file_size": 1347,
+			"file_write_time": 130065937348222967,
 			"settings":
 			{
-				"buffer_size": 1021,
+				"buffer_size": 1310,
+				"line_ending": "Windows",
+				"name": "sealed abstract class MyList[+A] {"
+			}
+		},
+		{
+			"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/immutable/List.scala",
+			"settings":
+			{
+				"buffer_size": 21512,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/gitdev/scala_src/scala/src/library/scala/collection/TraversableViewLike.scala",
+			"settings":
+			{
+				"buffer_size": 10157,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "/C/app/play-2.1.0/samples/scala/computer-database/app/views/list.scala.html",
+			"file": "/C/gitdev/scala_src/scala/src/library/scala/runtime/ScalaRunTime.scala",
 			"settings":
 			{
-				"buffer_size": 3933,
+				"buffer_size": 14954,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/gitdev/scala_src/scala/src/library/scala/util/parsing/combinator/Parsers.scala",
+			"settings":
+			{
+				"buffer_size": 41511,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/immutable/Traversable.scala",
+			"settings":
+			{
+				"buffer_size": 1583,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/Traversable.scala",
+			"settings":
+			{
+				"buffer_size": 4846,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/generic/FilterMonadic.scala",
+			"settings":
+			{
+				"buffer_size": 1030,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/TraversableLike.scala",
+			"settings":
+			{
+				"buffer_size": 28262,
 				"line_ending": "Unix"
 			}
 		}
@@ -43,19 +120,35 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 267.0,
+		"height": 150.0,
 		"selected_items":
 		[
 			[
+				"Markdown ",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"mark",
+				"Markdown Preview: preview in Sublime Text"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
 				"Package Control: ",
-				"Package Control: List Packages"
+				"Package Control: Install Package"
+			],
+			[
+				"Package",
+				"Package Control: Install Package"
 			],
 			[
 				"Package Control: In",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 449.0
+		"width": 512.0
 	},
 	"console":
 	{
@@ -72,33 +165,81 @@
 	},
 	"file_history":
 	[
-		"/C/app/play-2.1.0/samples/scala/computer-database/app/controllers/Application.scala",
-		"/C/app/play-2.1.0/samples/scala/computer-database/app/models/Models.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/TraversableOnce.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/Iterator.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/immutable/List.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/immutable/LinearSeq.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/LinearSeq.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/LinearSeqLike.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/SeqLike.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/IterableLike.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/GenIterableLike.scala",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/controllers/Application.scala",
+		"/C/gitdev/scala-doc-kor/play_kor_docs/UserInputForm_wordpress.markdown",
+		"/C/gitdev/scala-doc-kor/play_kor_docs/UserInputForm.wordpress.html",
+		"/C/gitdev/scala-doc-kor/play_kor_docs/Monad_eval.markdown",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/parallel/ParIterableLike.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/Traversable.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/collection/TraversableLike.scala",
+		"/C/app/scala-2.10.0/src/scala-library-src/scala/Option.scala",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/defaultFieldConstructor.scala.html",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/editForm.scala.html",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/users.scala.html",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/models/User.scala",
-		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/Global.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/AggregateTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/ColumnDefaultTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/CountTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/DataTypeTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/ExecutorTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/ForeignKeyTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/InsertTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/InvokerTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/IterateeTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/JoinTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/MainTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/MapperTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/MiscTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/MutateTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/NestingTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/NewQuerySemanticsTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/OldTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/PagingTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/PlainSQLTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/PrimaryKeyTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/ScalarFunctionTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/SequenceTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/TemplateTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/TransactionTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/UnionTest.scala",
+		"/C/gitdev/slick_source/slick/slick-testkit/src/main/scala/com/typesafe/slick/testkit/tests/ZipTest.scala",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/conf/routes",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/list.scala.html",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/helper/inputHidden.scala.html",
+		"/C/gitdev/slick_source/slick/src/main/scala/scala/slick/lifted/Query.scala",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/createForm.scala.html",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/data/Forms.scala",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/data/format/Format.scala",
+		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/input.scala.html",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/main.scala.html",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/controllers/Application.scala",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/public/stylesheets/bootstrap.min.css",
+		"/C/app/play-2.1.0/samples/scala/computer-database/app/models/Models.scala",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/users.scala.html2.html",
+		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/Global.scala",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/public/stylesheets/main.css",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/conf/application.conf",
 		"/C/app/play-2.1.0/samples/scala/computer-database/public/stylesheets/main.css",
-		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/main.scala.html",
 		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/main.scala.html",
 		"/C/app/play-2.1.0/samples/scala/computer-database/conf/routes",
-		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/conf/routes",
 		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/createForm.scala.html",
-		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/list.scala.html",
-		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/users.scala.html",
 		"/C/app/play-2.1.0/samples/scala/computer-database/conf/application.conf",
 		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/editForm.scala.html",
 		"/C/app/play-2.1.0/samples/scala/computer-database/app/views/twitterBootstrapInput.scala.html",
-		"/C/gitdev/crosswayfc/crossfs/CrosswayFS2/app/views/user/createForm.scala.html",
 		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/templates/Templates.scala",
 		"/C/app/Play-2.1.0/framework/src/templates/src/main/scala/play/api/templates/ScalaTemplate.scala",
 		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/Helpers.scala",
 		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/package.scala",
 		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/inputText.scala.html",
-		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/input.scala.html",
-		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/views/helper/defaultFieldConstructor.scala.html",
 		"/C/app/Play-2.1.0/framework/src/play/src/main/scala/play/api/data/Form.scala",
 		"/C/gitdev/crosswayfc/crossfs/CrosswayFS.sublime-project",
 		"/app/play-2.1.0/samples/scala/computer-database/app/controllers/Application.scala",
@@ -108,20 +249,38 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 172.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 90.0,
 		"where_history":
 		[
+			"C:\\gitdev\\scala_src\\scala\\src\\library\\scala",
+			"C:\\app\\scala-2.10.0\\src\\scala-library-src\\scala",
+			"<open files>"
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"def map",
+			"def map[",
+			"def map",
+			"val map",
+			"def map",
+			"def flatMap",
+			"def map(",
+			"map",
+			"flatMap",
+			"None",
+			"</code></pre>",
+			"<pre><code>",
+			"delete",
+			"border",
+			"head",
 			"Flash",
 			"flashing",
 			"input",
@@ -134,63 +293,39 @@
 		"regex": false,
 		"replace_history":
 		[
+			"[/sourcecode]",
+			"[sourcecode language=\"scala\"]"
 		],
 		"reverse": false,
 		"show_context": true,
-		"use_buffer2": true,
+		"use_buffer2": false,
 		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "CrosswayFS2/app/views/user/users.scala.html2.html",
 					"settings":
 					{
-						"buffer_size": 828,
+						"buffer_size": 689,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								560,
-								560
+								677,
+								677
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "CrosswayFS2/conf/routes",
-					"settings":
-					{
-						"buffer_size": 690,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								577,
-								621
-							]
-						],
-						"settings":
-						{
+							"auto_name": "FilterMonadic",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -200,19 +335,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "CrosswayFS2/app/controllers/Application.scala",
+					"buffer": 1,
+					"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/Iterable.scala",
 					"settings":
 					{
-						"buffer_size": 1021,
+						"buffer_size": 1971,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								591,
-								591
+								1509,
+								1527
 							]
 						],
 						"settings":
@@ -222,35 +357,310 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 192.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "/C/app/play-2.1.0/samples/scala/computer-database/app/views/list.scala.html",
+					"buffer": 2,
+					"file": "/C/gitdev/scala_src/scala/src/library/scala/collection/Iterator.scala",
 					"settings":
 					{
-						"buffer_size": 3933,
+						"buffer_size": 44026,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								518,
-								879
+								13046,
+								13046
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
+						"translation.y": 5165.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/gitdev/scala_src/scala/src/library/scala/collection/TraversableOnce.scala",
+					"settings":
+					{
+						"buffer_size": 15186,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								14733,
+								14733
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6621.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/C/Users/s2852886/Google Drive/mylist.scala",
+					"settings":
+					{
+						"buffer_size": 1310,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								952,
+								1310
+							]
+						],
+						"settings":
+						{
+							"auto_name": "sealed abstract class MyList[+A] {",
+							"syntax": "Packages/Scala/Scala.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 138.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/immutable/List.scala",
+					"settings":
+					{
+						"buffer_size": 21512,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11104,
+								11301
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5328.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/C/gitdev/scala_src/scala/src/library/scala/collection/TraversableViewLike.scala",
+					"settings":
+					{
+						"buffer_size": 10157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6102,
+								6102
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2189.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/gitdev/scala_src/scala/src/library/scala/runtime/ScalaRunTime.scala",
+					"settings":
+					{
+						"buffer_size": 14954,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12127,
+								12127
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4125.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/C/gitdev/scala_src/scala/src/library/scala/util/parsing/combinator/Parsers.scala",
+					"settings":
+					{
+						"buffer_size": 41511,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4244,
+								4244
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1117.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/immutable/Traversable.scala",
+					"settings":
+					{
+						"buffer_size": 1583,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage"
+						},
+						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/Traversable.scala",
+					"settings":
+					{
+						"buffer_size": 4846,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1434,
+								1434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1439.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/generic/FilterMonadic.scala",
+					"settings":
+					{
+						"buffer_size": 1030,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								739,
+								1028
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 202.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "/C/app/scala-2.10.0/src/scala-library-src/scala/collection/TraversableLike.scala",
+					"settings":
+					{
+						"buffer_size": 28262,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9606,
+								9606
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Scala/Scala.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3634.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -264,7 +674,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 32.0
 	},
 	"layout":
 	{
@@ -289,9 +699,13 @@
 		]
 	},
 	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 579.0
+	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":

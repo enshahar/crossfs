@@ -12,6 +12,7 @@ GET     /assets/*file               controllers.Assets.at(path="/public", file)
 GET	/users			controllers.Application.users
 GET /users/new 		controllers.Application.newUser
 GET	/users/:id		controllers.Application.user(id: Long)
-POST	/users			controllers.Application.saveUser	
-POST	/users/:id/delete	controllers.Application.deleteUser(id: Long)
-POST	/users/:id/modify	controllers.Application.modifyUser(id: Long)
+GET	/users/:id/delete	controllers.Application.deleteUser(id: Long)
+GET	/users/:id/modify	controllers.Application.modifyUser(id: Long)
+POST  /users			controllers.Application.saveUser	
+POST  /users/:id/modify	controllers.Application.updateUser(id: Long)

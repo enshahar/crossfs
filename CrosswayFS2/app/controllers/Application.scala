@@ -17,10 +17,11 @@ object Application extends Controller {
 	  		Ok(views.html.user.users(Users.listUser))
 	}
 
-  def user(id: Long) = TODO
-  
+  // display a user : just call modify user with edit disable
+  def user(id: Long) = modifyUser(id, false)
+
   // 사용자 폼을 표시한다.
-  def newUser = Action {
+  def newUser = Action { implicit request =>
     Ok(views.html.user.createForm(Users.userForm))
   }
 
@@ -34,12 +35,50 @@ object Application extends Controller {
     )
   }
 
-  def deleteUser(id: Long) = TODO
+  def deleteUser(id: Long) = Action { implicit request =>
+    if(id >= 0) {
+        if(Users.deleteUser(id) > 0)
+          UsersHome.flashing("success" -> "User(id=%d) has been deleted".format(id))
+        else
+          UsersHome.flashing("error" -> "User(id=%d) delete error".format(id))
+    } else
+        UsersHome.flashing("error" -> "Invalid User ID")
+  }
 
-  def modifyUser(id: Long) = TODO
 
+  def modifyUser(id: Long, editable:Boolean=true) = Action { implicit request =>
+    if(id >= 0)
+    {
+        val u = Users.getUser(id)
+        u match {
+          case Some(v) => Ok(views.html.user.editForm(Users.userForm.fill(v), editable))
+          case None => UsersHome.flashing("error" -> "Invalid User ID")
+        }
+    }
+    else
+        UsersHome.flashing("error" -> "Invalid User ID")
+  }
+
+  def updateUser(id: Long) = Action { implicit request =>
+    Users.userForm.bindFromRequest.fold(
+      formWithErrors => BadRequest(views.html.user.editForm(formWithErrors)),
+      user => {
+        user.id match {
+          case Some(x) => 
+            if(x==id) 
+            {
+              Users.updateUser(user)
+              UsersHome.flashing("success" -> "User %s(%s) has been updated".format(user.loginname, user.name))
+            }
+            else 
+              UsersHome.flashing("error" -> "User id %d is not match %d".format(x,id))
+          case None => UsersHome.flashing("error" -> "null id error.")
+        }        
+      }
+    )
+  }
   
-  def index = Action {
+  def index = Action { implicit request =>
     Ok(views.html.index("Your new application is ready."))
   }
   
